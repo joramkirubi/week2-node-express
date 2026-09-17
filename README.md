@@ -4,12 +4,12 @@ A small Express API assignment: basic routes, JSON parsing, error handling, a st
 
 ## Routes
 
-| Method | Path        | Description                                      |
-|--------|-------------|---------------------------------------------------|
-| GET    | `/`         | Serves the static `public/index.html` page       |
-| GET    | `/api`      | Returns plain text `My Week 2 API!`               |
+| Method | Path        | Description                                                          |
+| ------ | ----------- | -------------------------------------------------------------------- |
+| GET    | `/`         | Serves the static `public/index.html` page                           |
+| GET    | `/api`      | Returns plain text `My Week 2 API!`                                  |
 | POST   | `/user`     | Body `{ name, email }` → `Hello, [name]!` (400 if either is missing) |
-| GET    | `/user/:id` | Returns `User [id] profile`                        |
+| GET    | `/user/:id` | Returns `User [id] profile`                                          |
 
 Any unmatched route returns a `404` JSON error. Any thrown/passed error is caught by a central error-handling middleware and returned as JSON with a `500` (or custom) status.
 
@@ -56,6 +56,7 @@ curl http://localhost:3000/user/42
 ```
 
 **With Postman:**
+
 1. Create requests for each route above.
 2. For `POST /user`, set the Body tab to `raw` → `JSON` and enter `{ "name": "Joram", "email": "joram@example.com" }`.
 3. Confirm you get a `400` status when you omit `name` or `email`.
@@ -80,13 +81,3 @@ git push -u origin main
 ```
 
 (`.env` is git-ignored on purpose — never commit real secrets. `.env.example` documents the variable for anyone cloning the repo.)
-
-## 4. Deploy (optional, if the assignment asks for a live link)
-
-Any of these work well for a small Express app:
-
-- **Render** (render.com) — free tier, connect your GitHub repo, set build command `npm install` and start command `npm start`, add `PORT` as an env var (Render sets its own `PORT` automatically — Express already respects `process.env.PORT`).
-- **Railway** (railway.app) — similar flow, auto-detects Node apps.
-- **Vercel** — works for serverless-style Node APIs with a small config tweak if you want to go that route.
-
-After deploying, test the live URL the same way you tested locally with curl/Postman.
